@@ -1,0 +1,67 @@
+<div class="bg-container" >
+<div class="container">
+  <h1>User form :</h1>
+
+<form [formGroup]="userform" (ngSubmit)="onSubmit(userform)">
+  
+  <div class="form-group">
+    <label for="">Name:</label>
+    <input type="text" class="form-control w-50" formControlName="name">
+  </div>
+  <div class="form-group">
+    <label for="">Email:</label>
+    <input type="email" class="form-control w-50" formControlName="email">
+  </div>
+  <div class="form-group">
+    <label for="">Phone:</label>
+    <input type="number" class="form-control w-50" formControlName="phone">
+  </div>
+  <div formGroupName="address">
+    <h2 style="color: white;">Address:</h2>
+    
+    <div class="form-group">
+      <label for="street">Street: </label>
+      <input id="street" type="text" class="form-control w-50" formControlName="street">
+    </div>
+  <div class="form-group">
+    <label for="city">City: </label>
+    <input id="city" type="text" class="form-control w-50" formControlName="city">
+  </div>
+  <div class="form-group">
+    <label for="state">State: </label>
+    <input id="state" type="text" class="form-control w-50" formControlName="state">
+  </div>   
+  <div class="form-group">
+    <label for="zip">Zip Code: </label>
+    <input id="zip" type="text"  class="form-control w-50"formControlName="zip">
+  </div>
+  </div>
+
+
+  
+
+  <div formArrayName="addSkills">
+    <h2>Add Skills</h2>
+    <a href="javascript:void(0)"><button (click)="addSkill()" style="border-radius: 10px;">+ Add technical Skills</button></a>
+  
+    <div *ngFor="let x of addSkills.controls; let i=index">
+      <!-- The repeated alias template -->
+      <label for="x-{{ i }}">Skill:</label>
+      <input id="x-{{ i }}" type="text" [formControlName]="i">
+    </div>
+  </div>
+
+  <p style="color: white;">value:{{ userform.value | json}}</p>
+  <p style="color: white;">valid:{{userform.status}}</p>
+
+  &nbsp;
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit" [disabled]="!userform.valid">Submit</button>
+  </div>
+</form>
+
+</div>
+</div>
+
+
+
